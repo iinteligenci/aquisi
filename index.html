@@ -1,96 +1,49 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101827">
-<title>Aquisi | Aquisição de clientes para Dornelas</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Compare cotações de fornecedores pelo custo por kg, litro ou unidade, incluindo frete e desconto. Grátis, sem cadastro e sem planilhas.">
+<meta name="theme-color" content="#10283f">
+<title>CotaCerta — compare o custo real das compras</title>
 <style>
-:root{--bg:#0b1220;--panel:#121d30;--panel2:#192840;--line:#2a3b55;--text:#f2f6ff;--muted:#a5b3c9;--blue:#75b4ff;--green:#5ee0ad;--amber:#ffd08a;--red:#ff9292}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 10% 0%,#172a48 0,transparent 42%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}button,input,select,textarea{font:inherit}button,a.btn{cursor:pointer;border:0;border-radius:10px;padding:10px 14px;background:var(--blue);color:#071426;font-weight:750;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px}button.secondary,a.secondary{background:#263650;color:var(--text);border:1px solid #3a4e6d}button.ghost{background:transparent;border:1px solid var(--line);color:var(--text)}button:hover,a.btn:hover{filter:brightness(1.08)}.wrap{max-width:1160px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:24px}.brand{display:flex;gap:12px;align-items:center}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#75b4ff,#5ee0ad);display:grid;place-items:center;color:#061225;font-weight:900;font-size:20px}.eyebrow{color:var(--green);font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.muted{color:var(--muted)}h1{font-size:clamp(26px,4vw,38px);line-height:1.12;margin:5px 0 8px}h2{font-size:19px;margin:0 0 8px}h3{font-size:15px;margin:0 0 7px}.hero{display:grid;grid-template-columns:1.4fr .8fr;gap:16px;margin-bottom:18px}.card{background:linear-gradient(180deg,rgba(24,40,64,.95),rgba(18,29,48,.98));border:1px solid var(--line);border-radius:17px;padding:19px;min-width:0}.hero .card:first-child{padding:25px}.tag{display:inline-flex;border-radius:999px;padding:4px 9px;background:#1c3b38;color:var(--green);font-size:12px;font-weight:750}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}.stat{background:#101a2b;border:1px solid var(--line);border-radius:12px;padding:12px}.stat b{font-size:23px;display:block}.stat span{font-size:12px;color:var(--muted)}.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.stack{display:grid;gap:16px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.pill{border:1px solid var(--line);padding:4px 8px;border-radius:999px;font-size:11px;color:var(--muted)}.steps{display:grid;gap:11px}.step{display:flex;gap:12px;align-items:flex-start}.num{width:28px;height:28px;flex:0 0 28px;border-radius:9px;background:#233753;color:var(--blue);display:grid;place-items:center;font-weight:800}.step p{margin:3px 0 0;color:var(--muted);font-size:13px}.field{display:grid;gap:5px;margin:11px 0}.field label{font-size:12px;color:var(--muted);font-weight:700}.field input,.field select,.field textarea{width:100%;background:#0c1525;border:1px solid #344763;border-radius:9px;padding:10px;color:var(--text);outline:none}.field textarea{min-height:85px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--blue)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.output{background:#0c1525;border:1px solid #344763;border-radius:12px;padding:14px;white-space:pre-wrap;min-height:100px;font-size:14px}.idea{padding:13px;border:1px solid var(--line);border-radius:12px;background:#101a2b;margin-top:10px}.idea p{color:var(--muted);font-size:13px;margin:5px 0 10px}.warning{border-left:3px solid var(--amber);padding:9px 12px;background:#302719;border-radius:0 9px 9px 0;color:#ffe1b0;font-size:12px}.foot{font-size:12px;color:var(--muted);text-align:center;padding:24px 0 8px}.hidden{display:none!important}
-@media(max-width:760px){.wrap{padding:14px}.hero,.grid{grid-template-columns:1fr}.top{align-items:flex-start}.top .actions{margin:0}.stats{grid-template-columns:repeat(3,1fr)}.stat{padding:9px}.stat b{font-size:19px}}
+:root{color-scheme:light;--ink:#10283f;--muted:#607286;--line:#dce5ec;--blue:#1769aa;--pale:#edf5fb;--green:#176b49;--palegreen:#eaf5ee;--bg:#f3f6f8;--white:#fff;--shadow:0 12px 32px #18354b0c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select{font:inherit}button{border:0;border-radius:10px;padding:10px 15px;background:var(--blue);color:#fff;font-weight:750;cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #1769aa44;outline-offset:2px}button.secondary{background:#fff;color:var(--ink);border:1px solid var(--line)}button.ghost{background:transparent;color:var(--muted);padding:5px 9px}.shell{max-width:1160px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:34px}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:21px;font-weight:900}.brand strong{font-size:19px;letter-spacing:-.03em}.brand small{display:block;color:var(--muted);font-size:12px}.actions{display:flex;gap:8px;flex-wrap:wrap}.hero{margin:0 0 22px;max-width:800px}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--blue);font-weight:850}h1{font-size:clamp(29px,4.2vw,43px);line-height:1.08;letter-spacing:-.045em;margin:8px 0 11px}h2{font-size:18px;letter-spacing:-.02em;margin:0 0 14px}.hero p{margin:0;color:var(--muted);font-size:16px;max-width:720px}.trust{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;color:var(--muted);font-size:12px}.trust span:before{content:"✓";color:var(--green);font-weight:900;margin-right:6px}.grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);gap:17px}.stack{display:grid;gap:17px;align-content:start}.card{background:var(--white);border:1px solid var(--line);border-radius:17px;padding:19px;box-shadow:var(--shadow)}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field{display:grid;gap:5px}.field label{font-size:12px;color:var(--muted);font-weight:750}.field input,.field select{width:100%;min-width:0;padding:10px 11px;border:1px solid var(--line);border-radius:9px;color:var(--ink);background:#fff}.field input:focus,.field select:focus{outline:2px solid #1769aa30;border-color:var(--blue)}.full{grid-column:1/-1}.tablewrap{overflow-x:auto}.table{border-collapse:collapse;width:100%;min-width:680px}.table th{text-align:left;font-size:10px;color:var(--muted);padding:9px 6px;border-bottom:1px solid var(--line);white-space:nowrap}.table td{padding:7px 5px;border-bottom:1px solid #edf1f4}.table input,.table select{width:100%;min-width:0;padding:8px 6px;border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink)}.table .name{min-width:125px}.table .supplier{min-width:105px}.table .unit{min-width:75px}.table .number{width:85px}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.small{font-size:12px}.muted{color:var(--muted)}.pill{font-size:10px;padding:4px 8px;border-radius:20px;background:var(--pale);color:var(--blue);font-weight:800;white-space:nowrap}.hint{font-size:12px;color:var(--muted);background:#f6f9fb;padding:11px;border-radius:10px;margin-top:12px}.summary{display:grid;grid-template-columns:1fr 1fr;gap:9px}.metric{background:#f6f9fb;border:1px solid var(--line);border-radius:12px;padding:12px}.metric b{font-size:22px;display:block;letter-spacing:-.03em}.metric span{font-size:11px;color:var(--muted)}.winner{background:var(--palegreen);border:1px solid #cfe7d8;border-radius:11px;padding:12px}.winner strong{color:var(--green)}.result{display:grid;gap:9px}.history{display:grid;gap:8px}.historyitem{border:1px solid var(--line);border-radius:10px;padding:10px}.historyitem p{margin:3px 0;color:var(--muted);font-size:12px}.empty{text-align:center;color:var(--muted);font-size:13px;padding:17px}.foot{text-align:center;color:var(--muted);font-size:11px;padding:24px 0}.msg{min-height:18px;margin:9px 0 0;color:var(--green);font-size:12px}.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:10px}.hidden{display:none!important}
+@media(max-width:780px){.shell{padding:15px}.grid{grid-template-columns:1fr}.top{margin-bottom:26px}.card{padding:15px}}
+@media(max-width:460px){.top{align-items:flex-start;flex-direction:column}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.actions button{flex:1}}
+@media print{body{background:#fff}.shell{padding:0}.top,.hero,.no-print,.foot{display:none!important}.grid{display:block}.card{box-shadow:none;border:0;padding:0}.grid>.stack:first-child .card:first-child{display:none}.grid>.stack:first-child .card:last-child{display:block}}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="shell">
 <header class="top">
- <div class="brand"><div class="logo">A</div><div><div class="eyebrow">Aquisição inteligente</div><strong style="font-size:19px">AQUISI <span class="muted" style="font-weight:400">/ Dornelas</span></strong></div></div>
- <div class="actions" style="margin:0"><span class="pill">MVP independente</span><button class="ghost" id="reset">Limpar rascunho</button></div>
+ <div class="brand"><div class="logo" aria-hidden="true">C</div><div><strong>CotaCerta</strong><small>Compare o custo real. Compre melhor.</small></div></div>
+ <div class="actions no-print"><button class="secondary" id="reset">Nova cotação</button><button id="print">Imprimir resumo</button></div>
 </header>
 <section class="hero">
- <div class="card">
-  <span class="tag">Foco: clientes novos</span>
-  <h1>Menos postagem no escuro.<br>Mais aquisição com método.</h1>
-  <p class="muted">Organize experimentos para atrair novos compradores para os defumados Dornelas. Gere campanhas, registre a origem dos pedidos e descubra o que merece ser repetido.</p>
-  <div class="actions"><button id="generateTop">Gerar campanha de aquisição</button><a class="btn secondary" href="https://iinteligenci.github.io/Site-dornelas/" target="_blank" rel="noopener">Abrir site Dornelas ↗</a></div>
-  <div class="stats">
-   <div class="stat"><b id="count">0</b><span>experimentos salvos</span></div>
-   <div class="stat"><b id="clicks">0</b><span>pedidos atribuídos</span></div>
-   <div class="stat"><b id="revenue">R$ 0</b><span>receita registrada</span></div>
-  </div>
- </div>
- <div class="card">
-  <h2>Como começar</h2>
-  <div class="steps">
-   <div class="step"><div class="num">1</div><div><strong>Escolha um público</strong><p>Consumidor final, churrasco/feijoada ou estabelecimentos de alimentação.</p></div></div>
-   <div class="step"><div class="num">2</div><div><strong>Crie uma oferta específica</strong><p>Um produto, um benefício e uma chamada clara para pedir.</p></div></div>
-   <div class="step"><div class="num">3</div><div><strong>Meça os pedidos</strong><p>Registre contatos e vendas; não confunda alcance com conversão.</p></div></div>
-  </div>
-  <div class="warning" style="margin-top:16px">Esta primeira versão não publica nem envia mensagens sozinha. Primeiro validamos campanhas e medição; integrações entram depois, com acesso autorizado.</div>
- </div>
+ <div class="eyebrow">Ferramenta gratuita para pequenos negócios</div>
+ <h1>O menor preço nem sempre é o menor custo.</h1>
+ <p>Compare fornecedores considerando quantidade, embalagem, frete e desconto. Descubra quanto custa cada kg, litro ou unidade antes de fechar a compra.</p>
+ <div class="trust"><span>Sem cadastro</span><span>Sem mensalidade</span><span>Dados salvos no seu dispositivo</span></div>
 </section>
-<section class="grid">
- <div class="stack">
-  <div class="card" id="builder">
-   <div class="row"><div><div class="eyebrow">Laboratório de campanhas</div><h2>Montar experimento</h2></div><span class="pill">Sem custo de API</span></div>
-   <div class="field"><label for="audience">Público-alvo</label><select id="audience"><option value="consumidor">Consumidores da Grande Vitória</option><option value="churrasco">Pessoas preparando churrasco</option><option value="feijoada">Pessoas procurando kit feijoada</option><option value="restaurante">Restaurantes e hamburguerias</option></select></div>
-   <div class="field"><label for="product">Produto ou oferta</label><select id="product"><option value="combo">Combo bacon + linguiça</option><option value="feijoada">Kit feijoada</option><option value="bacon">Bacon artesanal defumado</option><option value="linguica">Linguiça defumada</option><option value="costela">Costela defumada</option></select></div>
-   <div class="field"><label for="goal">Objetivo principal</label><select id="goal"><option value="pedido">Gerar pedidos pelo site/WhatsApp</option><option value="alcance">Alcançar novos consumidores locais</option><option value="comercial">Atrair novos estabelecimentos compradores</option></select></div>
-   <div class="field"><label for="offer">Preço/condição real (opcional)</label><input id="offer" placeholder="Ex.: combo por R$ 60 — deixe vazio se não estiver confirmado"></div>
-   <div class="field"><label for="proof">Diferencial verdadeiro da Dornelas</label><input id="proof" value="Defumação artesanal" placeholder="Ex.: produção artesanal, entrega local"></div>
-   <button id="generate" style="width:100%">Gerar campanha</button>
-   <div id="resultWrap" class="hidden" style="margin-top:16px"><div class="row"><h3>Campanha sugerida</h3><span class="pill">Rascunho</span></div><div id="result" class="output"></div><div class="actions"><button id="copy" class="secondary">Copiar texto</button><button id="save">Salvar experimento</button></div></div>
-  </div>
-  <div class="card">
-   <div class="row"><div><div class="eyebrow">Registro</div><h2>Experimentos salvos</h2></div><button class="ghost" id="export">Exportar CSV</button></div>
-   <div id="experiments" class="muted" style="font-size:13px;margin-top:10px">Nenhum experimento salvo ainda.</div>
-  </div>
- </div>
- <div class="stack">
-  <div class="card">
-   <div class="eyebrow">Radar inicial</div><h2>O que testar primeiro</h2>
-   <div class="idea"><div class="row"><strong>1. Conteúdo com intenção de compra</strong><span class="pill">Orgânico</span></div><p>Vídeo curto mostrando corte, textura e uso do produto; chamada para consultar os kits e pedir. Marcar o link para medir a origem.</p></div>
-   <div class="idea"><div class="row"><strong>2. Oferta de entrada</strong><span class="pill">Conversão</span></div><p>Testar um combo simples com preço e condições verdadeiros. Calcular a margem antes de divulgar e comparar pedidos gerados.</p></div>
-   <div class="idea"><div class="row"><strong>3. Público comercial</strong><span class="pill">B2B</span></div><p>Separar uma campanha para hamburguerias, bares e restaurantes, com foco em aplicações do defumado no cardápio. Não misturar com a mensagem para consumidor final.</p></div>
-   <p class="muted" style="font-size:12px;margin:12px 0 0">São hipóteses para testar, não dados de demanda confirmados. Priorize uma experiência de cada vez.</p>
-  </div>
-  <div class="card">
-   <div class="eyebrow">Medição manual simples</div><h2>Registrar resultado</h2>
-   <p class="muted" style="font-size:13px">Depois de rodar uma campanha, registre quantos pedidos novos ela trouxe e a receita atribuída. Os dados ficam neste navegador.</p>
-   <div class="field"><label for="expId">Experimento</label><select id="expId"><option value="">Salve um experimento primeiro</option></select></div>
-   <div class="field"><label for="orders">Pedidos novos atribuídos</label><input id="orders" type="number" min="0" step="1" value="0"></div>
-   <div class="field"><label for="sales">Receita desses pedidos (R$)</label><input id="sales" type="number" min="0" step="0.01" value="0"></div>
-   <button id="record" class="secondary" style="width:100%">Registrar resultado</button>
-   <p id="recordMsg" class="muted" style="font-size:12px"></p>
-  </div>
-  <div class="card">
-   <h2>Próxima etapa de automação</h2>
-   <p class="muted" style="font-size:13px">Depois de validar qual campanha gera pedidos, conectamos somente o necessário: Analytics para origem do tráfego, catálogo real para preço/estoque e uma integração oficial de mensagens se fizer sentido.</p>
-   <div class="actions"><a class="btn secondary" href="https://github.com/iinteligenci/aquisi" target="_blank" rel="noopener">Repositório ↗</a></div>
-  </div>
- </div>
-</section>
-<div class="foot">Aquisi · MVP de aquisição para Dornelas · Rascunhos salvos apenas neste navegador · Nenhuma publicação ou mensagem é enviada automaticamente.</div>
+<div class="grid">
+ <main class="stack">
+  <section class="card no-print"><div class="eyebrow">01 · Sua compra</div><h2>Identifique a cotação</h2><div class="formgrid"><div class="field"><label for="title">Nome da cotação</label><input id="title" maxlength="80" placeholder="Ex.: Compra semanal"></div><div class="field"><label for="date">Data</label><input id="date" type="date"></div></div></section>
+  <section class="card">
+   <div class="sectionhead"><div><div class="eyebrow">02 · Preços recebidos</div><h2>Adicione os fornecedores</h2></div><span class="pill">Custo por unidade</span></div>
+   <div class="tablewrap"><table class="table"><thead><tr><th>Produto</th><th>Fornecedor</th><th>Qtd.</th><th>Unidade</th><th>Preço (R$)</th><th>Frete (R$)</th><th>Desc. %</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+   <div class="actions no-print" style="margin-top:13px"><button class="secondary" id="add">+ Adicionar preço</button><button class="secondary" id="sample">Ver exemplo preenchido</button></div>
+   <div class="hint">Informe a quantidade total na unidade escolhida. Ex.: pacote com 5 kg = quantidade 5, unidade “kg”. O cálculo aplica o desconto ao preço dos produtos e soma o frete informado.</div>
+  </section>
+  <section class="card no-print"><div class="eyebrow">03 · Decisão</div><h2>Compare antes de comprar</h2><div id="breakdown" class="result"><div class="empty">Adicione dois preços do mesmo produto e unidade para comparar.</div></div><div class="actions" style="margin-top:14px"><button id="save">Salvar comparação</button><button class="secondary" id="csv">Exportar CSV</button></div><p class="msg" id="msg" role="status" aria-live="polite"></p></section>
+ </main>
+ <aside class="stack">
+  <section class="card"><div class="eyebrow">Resultado da cotação</div><h2>Menor custo por produto</h2><div class="summary"><div class="metric"><b id="products">0</b><span>produtos comparáveis</span></div><div class="metric"><b id="savings">R$ 0,00</b><span>economia potencial*</span></div></div><div id="winner" style="margin-top:12px" class="empty">Inclua preços para comparar.</div><p class="hint">*Estimativa matemática entre a maior e a menor cotação, usando a menor quantidade comum. Não é economia realizada e não considera qualidade, prazo ou disponibilidade.</p></section>
+  <section class="card no-print"><div class="sectionhead"><div><div class="eyebrow">Neste dispositivo</div><h2>Histórico salvo</h2></div><button class="ghost" id="clearHistory" title="Apagar histórico">Limpar</button></div><div id="history" class="history"><div class="empty">Nenhuma comparação salva.</div></div></section>
+  <section class="card"><div class="eyebrow">Privacidade</div><h2>Seus dados ficam com você</h2><p class="small muted">Esta versão não exige conta, não envia suas cotações a um servidor e não acessa contas bancárias. O histórico fica no armazenamento local deste navegador. Exporte o CSV para guardar uma cópia.</p></section>
+ </aside>
 </div>
-<script>
-const $=id=>document.getElementById(id);
-const KEY='aquisi-dornelas-v1';
-let data={experiments:[],campaign:null};
-try{data=JSON.parse(localStorage.getItem(KEY))||data}catch(e){}
-const labels={consumidor:'Consumidores da Grande Vitória',churrasco:'Pessoas preparando churrasco',feijoada:'Pessoas procurando kit feijoada',restaurante:'Restaurantes e hamburguerias',combo:'Combo bacon + linguiça',feijoada:'Kit feijoada',bacon:'Bacon artesanal defumado',linguica:'Linguiça defumada',costela:'Costela defumada',pedido:'Gerar pedidos pelo site/WhatsApp',alcance:'Alcançar novos consumidores locais',comercial:'Atrair novos estabelecimentos compradores'};
-function persist(){localStorage.setItem(KEY,JSON.stringify(data));render()}
-function makeCampaign(){const a=$('audience').value,p=$('product').value,g=$('goal').value,offer=$('offer').value.trim(),proof=$('proof').value.trim()||'Defumação artesanal';const product=labels[p];let hook='',body='',cta='';if(a==='restaurante'||g==='comercial'){hook='Seu cardápio pode ganhar sabor defumado.';body='A Dornelas trabalha com '+product.toLowerCase()+', com foco em sabor e aplicação prática no cardápio. '+proof+'.';cta='Peça informações comerciais e consulte disponibilidade.'}else{hook=p==='feijoada'?'Feijoada boa começa pelos ingredientes.':p==='combo'?'Uma combinação para deixar a próxima refeição mais especial.':'Conheça o sabor da defumação artesanal.';body='Conheça '+product.toLowerCase()+' da Dornelas. '+proof+'.'+(offer?' Condição informada: '+offer+'.':'');cta='Confira os produtos e consulte preço e entrega para sua região.'}const link='https://iinteligenci.github.io/Site-dornelas/';const text=hook+'\n\n'+body+'\n\n'+cta+'\n'+link+'\n\n#Dornelas #DefumadosArtesanais';data.campaign={audience:a,product:p,goal:g,offer,proof,text,created:new Date().toISOString()};$('result').textContent=text;$('resultWrap').classList.remove('hidden')}
-function render(){const ex=data.experiments||[];$('count').textContent=ex.length;$('clicks').textContent=ex.reduce((s,e)=>s+(e.orders||0),0);$('revenue').textContent=(ex.reduce((s,e)=>s+(e.sales||0),0)).toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:2});$('experiments').innerHTML=ex.length?ex.map((e,i)=>'<div class="idea"><div class="row"><strong>'+esc(labels[e.product]||e.product)+'</strong><span class="pill">'+new Date(e.created).toLocaleDateString('pt-BR')+'</span></div><p>'+esc(labels[e.audience]||e.audience)+' · '+esc(labels[e.goal]||e.goal)+'</p><div class="row"><span class="muted">Pedidos: '+(e.orders||0)+' · Receita: '+(e.sales||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})+'</span><button class="ghost" data-del="'+i+'">Excluir</button></div></div>').join(''):'Nenhum experimento salvo ainda.';$('expId').innerHTML=ex.length?ex.map((e,i)=>'<option value="'+i+'">'+(i+1)+'. '+esc(labels[e.product]||e.product)+' — '+new Date(e.created).toLocaleDateString('pt-BR')+'</option>').join(''):'<option value="">Salve um experimento primeiro</option>'}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-$('generate').onclick=makeCampaign;$('generateTop').onclick=()=>{$('builder').scrollIntoView({behavior:'smooth'});makeCampaign()};$('copy').onclick=async()=>{try{await navigator.clipboard.writeText(data.campaign.text);$('copy').textContent='Copiado ✓';setTimeout(()=>$('copy').textContent='Copiar texto',1500)}catch(e){alert('Selecione e copie o texto da campanha.')}};$('save').onclick=()=>{if(!data.campaign)return;data.experiments.push({...data.campaign,orders:0,sales:0});persist();$('save').textContent='Salvo ✓';setTimeout(()=>$('save').textContent='Salvar experimento',1300)};$('record').onclick=()=>{const i=Number($('expId').value);if(!data.experiments[i])return;$('recordMsg').textContent='';data.experiments[i].orders=Math.max(0,Number($('orders').value)||0);data.experiments[i].sales=Math.max(0,Number($('sales').value)||0);persist();$('recordMsg').textContent='Resultado atualizado.'};$('experiments').onclick=e=>{const b=e.target.closest('[data-del]');if(b){data.experiments.splice(Number(b.dataset.del),1);persist()}};$('export').onclick=()=>{const rows=[['data','publico','produto','objetivo','oferta','pedidos','receita','texto'],...data.experiments.map(e=>[e.created,labels[e.audience]||e.audience,labels[e.product]||e.product,labels[e.goal]||e.goal,e.offer||'',e.orders||0,e.sales||0,e.text])];const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}));a.download='aquisi-experimentos.csv';a.click();URL.revokeObjectURL(a.href)};$('reset').onclick=()=>{if(confirm('Apagar todos os rascunhos e experimentos salvos neste navegador?')){data={experiments:[],campaign:null};localStorage.removeItem(KEY);$('resultWrap').classList.add('hidden');render()}};render();
-</script>
+<footer class="foot">CotaCerta · Ferramenta gratuita e experimental · Confira as condições diretamente com cada fornecedor.</footer>
+</div>
+<script src="./core.js"></script><script src="./app.js"></script>
 </body></html>
