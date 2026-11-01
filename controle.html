@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Painel de validação | InsumoCheck</title>
+<style>
+:root{color-scheme:light;--bg:#f3f6f8;--paper:#fff;--ink:#10283f;--muted:#607386;--line:#dce5ec;--blue:#1769aa;--green:#176b49;--red:#a53d3d}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{max-width:1100px;margin:auto;padding:24px 18px 60px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px}.brand{font-weight:850;font-size:18px}.muted,.sub{color:var(--muted)}h1{font-size:30px;letter-spacing:-.03em;margin:6px 0}h2{font-size:19px;margin:0 0 14px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0}.card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:17px;min-width:0}.metric{font-size:27px;font-weight:850;letter-spacing:-.03em}.metric-label{font-size:12px;color:var(--muted)}.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-top:14px}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:grid;gap:5px}.field label{font-size:12px;font-weight:750;color:var(--muted)}input,select,textarea{font:inherit;width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}input:focus,select:focus{outline:2px solid #8cc5ef;outline-offset:1px}button,.button{border:0;border-radius:10px;background:var(--blue);color:white;font-weight:750;padding:11px 15px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.secondary{background:#eaf1f6;color:var(--ink)}.danger{background:#f9eaea;color:var(--red)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.notice{background:#fff8e8;border:1px solid #f0dfb8;border-radius:12px;padding:13px;color:#73531c;margin:14px 0}.good{color:var(--green);font-weight:800}.bad{color:var(--red);font-weight:800}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--muted);font-size:11px}.scroll{overflow:auto}.stage{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}.small{font-size:12px}.links a{color:var(--blue);display:block;margin:8px 0;overflow-wrap:anywhere}.pill{display:inline-block;background:#eaf1f6;border-radius:99px;padding:4px 8px;font-size:11px;font-weight:750}.foot{font-size:12px;color:var(--muted);margin-top:22px}@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr}}@media(max-width:440px){.fields{grid-template-columns:1fr}.wrap{padding:16px 12px 45px}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="top"><div><div class="brand">InsumoCheck / Controle</div><div class="sub small">Painel local de validação do produto</div></div><a class="button secondary" href="./">Abrir aplicativo ↗</a></header>
+<h1>Estamos encontrando uso real?</h1>
+<p class="sub">Registre os números por semana. Não confunda visita com usuário ativo, teste com retenção ou intenção com pagamento.</p>
+<div class="notice"><strong>Importante:</strong> este painel não está conectado a analytics nem a um banco central. Os dados são inseridos manualmente e ficam apenas neste navegador. Não registre informações pessoais ou comerciais confidenciais. Para medir visitas, consulte o tráfego do GitHub; para feedback, consulte os issues do repositório.</div>
+<section class="grid">
+ <article class="card"><div class="metric" id="visitors">—</div><div class="metric-label">Visitantes únicos (soma semanal)</div></article>
+ <article class="card"><div class="metric" id="completed">—</div><div class="metric-label">Comparações concluídas</div></article>
+ <article class="card"><div class="metric" id="repeat">—</div><div class="metric-label">Usuários que voltaram</div></article>
+ <article class="card"><div class="metric" id="paying">—</div><div class="metric-label">Pagamentos reais</div></article>
+</section>
+<div class="layout">
+<section class="card">
+<h2>Registrar uma semana</h2>
+<form id="weekForm">
+<div class="fields">
+<div class="field"><label for="week">Semana (data de início)</label><input id="week" type="date" required></div>
+<div class="field"><label for="views">Visualizações da página</label><input id="views" type="number" min="0" value="0" required></div>
+<div class="field"><label for="visitorsInput">Visitantes únicos</label><input id="visitorsInput" type="number" min="0" value="0" required></div>
+<div class="field"><label for="started">Começaram uma cotação</label><input id="started" type="number" min="0" value="0" required></div>
+<div class="field"><label for="completedInput">Concluíram 2+ cotações comparáveis</label><input id="completedInput" type="number" min="0" value="0" required></div>
+<div class="field"><label for="returned">Voltaram a usar (coorte anterior)</label><input id="returned" type="number" min="0" value="0" required></div>
+<div class="field"><label for="feedback">Feedbacks recebidos</label><input id="feedback" type="number" min="0" value="0" required></div>
+<div class="field"><label for="willing">Disseram que pagariam</label><input id="willing" type="number" min="0" value="0" required></div>
+<div class="field"><label for="paid">Pagamentos recebidos</label><input id="paid" type="number" min="0" value="0" required></div>
+<div class="field"><label for="googleClicks">Cliques orgânicos do Google</label><input id="googleClicks" type="number" min="0" value="0" required></div>
+<div class="field"><label for="googleImpressions">Impressões no Google</label><input id="googleImpressions" type="number" min="0" value="0" required></div>
+<div class="field"><label for="indexStatus">Indexação Google</label><select id="indexStatus"><option value="Não verificada">Não verificada</option><option value="Descoberta">Descoberta</option><option value="Rastreada, não indexada">Rastreada, não indexada</option><option value="Indexada">Indexada</option><option value="Erro">Erro</option></select></div>
+</div>
+<div class="field" style="margin-top:12px"><label for="notes">Aprendizado / objeção mais comum / mudança feita</label><textarea id="notes" rows="3" placeholder="Ex.: 4 pessoas abandonaram porque não entendiam a unidade da embalagem."></textarea></div>
+<div class="actions"><button type="submit">Salvar semana</button><button type="button" class="secondary" id="clear">Limpar formulário</button></div>
+</form>
+</section>
+<section class="card">
+<h2>Indicadores de decisão</h2>
+<div class="stage"><span>Ativação (começaram / visitantes)</span><strong id="activation">—</strong></div>
+<div class="stage"><span>Conclusão (concluíram / começaram)</span><strong id="completionRate">—</strong></div>
+<div class="stage"><span>Retenção informada (voltaram / concluíram antes)</span><strong id="retention">—</strong></div>
+<div class="stage"><span>Intenção de pagar (sim / feedbacks)</span><strong id="intent">—</strong></div>
+<div class="stage"><span>Conversão paga (pagamentos / visitantes)</span><strong id="conversion">—</strong></div>
+<h2 style="margin-top:20px">Regras provisórias de decisão</h2>
+<p class="small"><span class="pill">Continuar</span> Uso recorrente, problemas repetidos resolvidos e primeiros pagamentos.</p>
+<p class="small"><span class="pill">Ajustar</span> Visitas sem início de cotação, ou início sem conclusão: corrigir proposta, onboarding e usabilidade.</p>
+<p class="small"><span class="pill">Pivotar / encerrar</span> Após 30 conversas qualificadas e 4 semanas de teste, ninguém volta ou paga: não adicionar recursos; reavaliar o problema.</p>
+<p class="small muted">Os limiares são hipóteses operacionais, não benchmarks de mercado.</p>
+</section>
+</div>
+<section class="card" style="margin-top:14px">
+<h2>Histórico semanal</h2><div class="scroll"><table><thead><tr><th>Semana</th><th>Visitantes</th><th>Começaram</th><th>Concluíram</th><th>Voltaram</th><th>Feedback</th><th>Pagaram</th><th>Google clicks</th><th>Indexação</th><th></th></tr></thead><tbody id="history"><tr><td colspan="10" class="muted">Nenhuma semana registrada. Não há dados fictícios.</td></tr></tbody></table></div>
+<div class="actions"><button id="export" class="secondary">Exportar CSV</button><button id="backup" class="secondary">Baixar backup JSON</button><button id="restore" class="secondary">Importar backup JSON</button><input id="file" type="file" accept="application/json" hidden><button id="wipe" class="danger">Apagar dados locais</button></div>
+</section>
+<div class="layout">
+<section class="card links"><h2>Fontes de controle</h2>
+<a href="https://github.com/iinteligenci/aquisi/graphs/traffic" target="_blank" rel="noopener">GitHub → Insights → Traffic (visualizações e visitantes únicos) ↗</a>
+<a href="https://github.com/iinteligenci/aquisi/issues" target="_blank" rel="noopener">Feedbacks e bugs enviados por usuários ↗</a>
+<a href="https://search.google.com/search-console" target="_blank" rel="noopener">Google Search Console (indexação, impressões e cliques) ↗</a>
+<a href="https://www.google.com/search?q=site%3Aiinteligenci.github.io%2Faquisi" target="_blank" rel="noopener">Verificar páginas que o Google já indexou ↗</a>
+<a href="https://github.com/iinteligenci/aquisi/actions" target="_blank" rel="noopener">Testes e histórico de publicações ↗</a>
+</section>
+<section class="card"><h2>Próxima rotina de avaliação</h2>
+<ol class="small">
+<li>Registrar visitantes únicos e visualizações do GitHub Traffic.</li>
+<li>Contar quantos visitantes realmente inseriram duas cotações e concluíram uma comparação.</li>
+<li>Revisar issues de feedback e classificar cada objeção.</li>
+<li>Registrar intenção de pagamento separadamente de pagamentos reais.</li>
+<li>Verificar Google Search Console e indexação semanalmente.</li>
+<li>Escolher uma única melhoria com base no maior ponto de abandono.</li>
+</ol>
+<p class="small muted">O site não registra comportamento individual dos visitantes. A medição de uso concluído exige observação em testes com pessoas ou uma futura ferramenta de analytics com consentimento e configuração apropriada.</p>
+</section>
+</div>
+<p class="foot">InsumoCheck · Painel local, sem login e sem sincronização. O armazenamento deste navegador pode ser apagado pelo próprio dispositivo. Não é um sistema seguro para dados sensíveis.</p>
+</main>
+<script>
+(()=>{"use strict";
+const KEY="insumocheck-control-v1",by=id=>document.getElementById(id),num=id=>Math.max(0,Number(by(id).value)||0),pct=(a,b)=>b?((a/b)*100).toFixed(1)+"%":"—";
+let weeks=[];try{weeks=JSON.parse(localStorage.getItem(KEY)||"[]");if(!Array.isArray(weeks))weeks=[]}catch{weeks=[]}
+const save=()=>localStorage.setItem(KEY,JSON.stringify(weeks));
+const sum=k=>weeks.reduce((a,w)=>a+(Number(w[k])||0),0);
+function render(){
+by("visitors").textContent=sum("visitorsInput").toLocaleString("pt-BR");
+by("completed").textContent=sum("completedInput").toLocaleString("pt-BR");
+by("repeat").textContent=sum("returned").toLocaleString("pt-BR");
+by("paying").textContent=sum("paid").toLocaleString("pt-BR");
+by("activation").textContent=pct(sum("started"),sum("visitorsInput"));
+by("completionRate").textContent=pct(sum("completedInput"),sum("started"));
+by("retention").textContent=pct(sum("returned"),sum("completedInput"));
+by("intent").textContent=pct(sum("willing"),sum("feedback"));
+by("conversion").textContent=pct(sum("paid"),sum("visitorsInput"));
+by("history").innerHTML=weeks.length?weeks.slice().sort((a,b)=>b.week.localeCompare(a.week)).map(w=>'<tr><td>'+w.week+'</td><td>'+w.visitorsInput+'</td><td>'+w.started+'</td><td>'+w.completedInput+'</td><td>'+w.returned+'</td><td>'+w.feedback+'</td><td>'+w.paid+'</td><td>'+w.googleClicks+'</td><td>'+w.indexStatus+'</td><td><button class="danger" data-delete="'+w.week+'">Excluir</button></td></tr>').join(""):'<tr><td colspan="10" class="muted">Nenhuma semana registrada. Não há dados fictícios.</td></tr>';
+}
+by("week").value=new Date().toISOString().slice(0,10);
+by("weekForm").addEventListener("submit",e=>{e.preventDefault();const w={week:by("week").value,views:num("views"),visitorsInput:num("visitorsInput"),started:num("started"),completedInput:num("completedInput"),returned:num("returned"),feedback:num("feedback"),willing:num("willing"),paid:num("paid"),googleClicks:num("googleClicks"),googleImpressions:num("googleImpressions"),indexStatus:by("indexStatus").value,notes:by("notes").value};if(w.started>w.visitorsInput||w.completedInput>w.started||w.returned>w.completedInput||w.willing>w.feedback||w.paid>w.visitorsInput){alert("Revise os números: o valor de uma etapa não pode superar a etapa anterior.");return}weeks=weeks.filter(x=>x.week!==w.week);weeks.push(w);save();render();alert("Semana salva neste navegador.")});
+by("history").addEventListener("click",e=>{const d=e.target.closest("[data-delete]");if(!d)return;weeks=weeks.filter(w=>w.week!==d.dataset.delete);save();render()});
+by("clear").onclick=()=>by("weekForm").reset();
+function download(name,type,content){const a=document.createElement("a"),u=URL.createObjectURL(new Blob([content],{type}));a.href=u;a.download=name;a.click();URL.revokeObjectURL(u)}
+by("export").onclick=()=>{if(!weeks.length)return alert("Não há semanas para exportar.");const keys=Object.keys(weeks[0]),csv=[keys,...weeks.map(w=>keys.map(k=>w[k]))].map(row=>row.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(";")).join("\n");download("insumocheck-controle.csv","text/csv;charset=utf-8",csv)};
+by("backup").onclick=()=>download("insumocheck-controle-backup.json","application/json",JSON.stringify(weeks,null,2));
+by("restore").onclick=()=>by("file").click();
+by("file").onchange=async()=>{const f=by("file").files[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!Array.isArray(d)||d.some(w=>!w.week))throw Error();weeks=d;save();render();alert("Backup importado.")}catch{alert("Arquivo de backup inválido.")}by("file").value=""};
+by("wipe").onclick=()=>{if(confirm("Apagar todas as semanas salvas neste navegador?")){weeks=[];save();render()}};
+render();
+})();
+</script></body></html>
