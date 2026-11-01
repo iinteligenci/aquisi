@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10231f">
+<title>OrçaFluxo — orçamento e lucro no mesmo lugar</title>
+<meta name="description" content="Monte orçamentos profissionais, calcule custos e acompanhe propostas sem planilhas complicadas.">
+<style>
+:root{--bg:#f3f6f4;--paper:#fff;--ink:#182b25;--muted:#65756e;--line:#dce5df;--brand:#146b50;--brand2:#dff3e9;--warn:#fff2d8;--shadow:0 10px 30px #193c2b12}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}button,input,textarea,select{font:inherit}button{border:0;border-radius:10px;padding:11px 15px;background:var(--brand);color:white;font-weight:700;cursor:pointer}button:hover{filter:brightness(.96)}button.secondary{background:white;color:var(--ink);border:1px solid var(--line)}button.danger{background:#fff0ef;color:#a52d25;border:1px solid #f2d3d0}.shell{max-width:1160px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:22px}.brand{display:flex;align-items:center;gap:11px}.mark{width:42px;height:42px;border-radius:13px;background:var(--brand);color:white;display:grid;place-items:center;font-weight:900;font-size:20px}.brand small{display:block;color:var(--muted);font-size:12px}.brand strong{font-size:19px}.actions{display:flex;gap:8px;flex-wrap:wrap}.layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:18px}.stack{display:grid;gap:16px;align-content:start}.card{background:var(--paper);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:var(--shadow)}h1{font-size:clamp(26px,4vw,36px);line-height:1.12;margin:6px 0 8px}h2{font-size:18px;margin:0 0 14px}h3{font-size:14px;margin:0 0 8px}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:10px;font-weight:800;color:var(--brand)}.muted{color:var(--muted)}.hero{margin-bottom:18px}.hero p{max-width:690px;margin:0;color:var(--muted)}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.field{display:grid;gap:5px;min-width:0}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:700;color:var(--muted)}input,textarea,select{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px 11px;background:#fff;color:var(--ink);outline:none}input:focus,textarea:focus,select:focus{border-color:var(--brand);box-shadow:0 0 0 3px #146b5014}textarea{min-height:75px;resize:vertical}.items{width:100%;border-collapse:collapse}.items th{text-align:left;font-size:11px;color:var(--muted);font-weight:700;padding:8px 5px;border-bottom:1px solid var(--line)}.items td{padding:7px 4px;border-bottom:1px solid #edf1ee;vertical-align:middle}.items input{padding:8px 6px;min-width:0}.items .desc{min-width:125px}.items .qty{width:66px}.items .price{width:105px}.items .total{white-space:nowrap;font-weight:700;font-size:13px}.remove{background:transparent;color:#a52d25;padding:5px 7px}.totals{display:grid;gap:8px;margin-top:13px}.totalrow{display:flex;justify-content:space-between;gap:10px}.totalrow strong{font-size:19px}.totalrow.final{border-top:1px solid var(--line);padding-top:12px;margin-top:4px}.pill{font-size:11px;border-radius:999px;padding:4px 8px;background:var(--brand2);color:var(--brand);font-weight:700}.metric{background:#f6faf7;border:1px solid var(--line);border-radius:12px;padding:12px}.metric b{font-size:23px;display:block}.metric span{font-size:11px;color:var(--muted)}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:9px}.hint{padding:11px 12px;background:#f4f8f5;border-radius:10px;color:var(--muted);font-size:12px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.history{display:grid;gap:9px}.history-item{padding:12px;border:1px solid var(--line);border-radius:11px}.history-item .row{display:flex;justify-content:space-between;gap:8px;align-items:center}.history-item p{margin:4px 0;color:var(--muted);font-size:12px}.status{font-size:10px;padding:3px 7px;border-radius:20px;background:#edf2ef;color:#53645b}.status.enviada{background:#eaf2ff;color:#315b9a}.status.aprovada{background:#e1f5e9;color:#17613e}.status.perdida{background:#fff0ef;color:#a52d25}.empty{color:var(--muted);font-size:13px;text-align:center;padding:20px}.foot{text-align:center;color:var(--muted);font-size:11px;padding:22px}.hidden{display:none!important}
+@media(max-width:800px){.shell{padding:14px}.layout{grid-template-columns:1fr}.top{align-items:flex-start}.top .actions{justify-content:flex-end}.fields{grid-template-columns:1fr 1fr}.card{padding:16px}}
+@media(max-width:430px){.top{flex-direction:column}.top .actions{justify-content:flex-start}.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.items .desc{min-width:100px}.items .price{width:82px}.items .qty{width:52px}}
+@media print{body{background:white}.shell{max-width:none;padding:0}.top,.hero,.no-print,.foot{display:none!important}.layout{display:block}.layout>.stack:first-child{display:none}.layout>.stack:last-child>.card:not(#printQuote){display:none}#printQuote{display:block!important;border:0;box-shadow:none;padding:0}.card{box-shadow:none}.print-brand{display:block!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="top">
+ <div class="brand"><div class="mark">O</div><div><strong>OrçaFluxo</strong><small>Propostas claras. Lucro sob controle.</small></div></div>
+ <div class="actions no-print"><button class="secondary" id="newQuote">Novo orçamento</button><button id="printBtn">Gerar PDF / Imprimir</button></div>
+</header>
+<section class="hero">
+ <div class="eyebrow">Ferramenta gratuita para profissionais de serviço</div>
+ <h1>Faça o orçamento.<br>Saiba quanto realmente sobra.</h1>
+ <p>Monte uma proposta profissional, some materiais e mão de obra, inclua taxas e veja sua margem antes de enviar ao cliente. Seus dados ficam neste dispositivo.</p>
+</section>
+<div class="layout">
+ <div class="stack no-print">
+  <section class="card">
+   <div class="eyebrow">01 · Cliente e serviço</div><h2>Dados da proposta</h2>
+   <div class="fields">
+    <div class="field"><label for="business">Seu nome / empresa</label><input id="business" placeholder="Ex.: João Serviços"></div>
+    <div class="field"><label for="phone">Seu telefone</label><input id="phone" placeholder="(00) 00000-0000"></div>
+    <div class="field"><label for="client">Nome do cliente</label><input id="client" placeholder="Nome completo"></div>
+    <div class="field"><label for="clientContact">Contato do cliente (opcional)</label><input id="clientContact" placeholder="Telefone ou e-mail"></div>
+    <div class="field full"><label for="service">Descrição do serviço</label><input id="service" placeholder="Ex.: Instalação de 4 luminárias"></div>
+    <div class="field"><label for="validity">Validade da proposta</label><select id="validity"><option>7 dias</option><option>10 dias</option><option>15 dias</option><option>30 dias</option></select></div>
+    <div class="field"><label for="date">Data</label><input id="date" type="date"></div>
+   </div>
+  </section>
+  <section class="card">
+   <div class="eyebrow">02 · Composição do preço</div><h2>Materiais e mão de obra</h2>
+   <div style="overflow-x:auto">
+    <table class="items"><thead><tr><th>Descrição</th><th>Qtd.</th><th>Valor unit.</th><th>Total</th><th></th></tr></thead><tbody id="items"></tbody></table>
+   </div>
+   <div class="toolbar"><button class="secondary" id="addItem">+ Adicionar item</button></div>
+   <div class="fields" style="margin-top:15px">
+    <div class="field"><label for="travel">Deslocamento (R$)</label><input id="travel" type="number" min="0" step=".01" value="0"></div>
+    <div class="field"><label for="other">Outros custos (R$)</label><input id="other" type="number" min="0" step=".01" value="0"></div>
+    <div class="field"><label for="tax">Impostos / taxas (%)</label><input id="tax" type="number" min="0" max="100" step=".1" value="0"></div>
+    <div class="field"><label for="fee">Taxa de pagamento (%)</label><input id="fee" type="number" min="0" max="100" step=".1" value="0"></div>
+    <div class="field"><label for="margin">Margem desejada (%)</label><input id="margin" type="number" min="0" max="90" step=".5" value="30"></div>
+    <div class="field"><label for="discount">Desconto (R$)</label><input id="discount" type="number" min="0" step=".01" value="0"></div>
+   </div>
+   <div class="hint" style="margin-top:12px">A margem é calculada sobre o preço de venda, não como acréscimo sobre o custo. Confira as taxas e os custos reais antes de enviar.</div>
+  </section>
+  <section class="card">
+   <div class="eyebrow">03 · Condições</div><h2>Observações e pagamento</h2>
+   <div class="fields">
+    <div class="field"><label for="payment">Condição de pagamento</label><input id="payment" placeholder="Ex.: 50% na aprovação e 50% na entrega"></div>
+    <div class="field"><label for="schedule">Prazo de execução</label><input id="schedule" placeholder="Ex.: até 3 dias úteis"></div>
+    <div class="field full"><label for="notes">Observações (opcional)</label><textarea id="notes" placeholder="O que está incluso, garantias, itens não inclusos..."></textarea></div>
+   </div>
+   <div class="toolbar"><button id="saveQuote">Salvar proposta</button><button class="secondary" id="exportData">Exportar histórico CSV</button></div>
+   <p class="muted" id="saveMsg" style="font-size:12px"></p>
+  </section>
+ </div>
+ <aside class="stack">
+  <section class="card no-print">
+   <div class="eyebrow">Resumo ao vivo</div><h2>Seu preço e sua margem</h2>
+   <div class="metrics">
+    <div class="metric"><b id="costValue">R$ 0,00</b><span>Custo estimado</span></div>
+    <div class="metric"><b id="priceValue">R$ 0,00</b><span>Preço sugerido</span></div>
+    <div class="metric"><b id="profitValue">R$ 0,00</b><span>Lucro estimado</span></div>
+    <div class="metric"><b id="marginValue">0%</b><span>Margem estimada</span></div>
+   </div>
+   <div class="totals">
+    <div class="totalrow"><span class="muted">Subtotal dos itens</span><b id="subtotal">R$ 0,00</b></div>
+    <div class="totalrow"><span class="muted">Custos adicionais</span><b id="extras">R$ 0,00</b></div>
+    <div class="totalrow"><span class="muted">Desconto</span><b id="discountValue">R$ 0,00</b></div>
+    <div class="totalrow final"><span><strong>Total da proposta</strong></span><strong id="finalValue">R$ 0,00</strong></div>
+   </div>
+   <p class="hint" id="calculationHint">Adicione itens para calcular seu preço recomendado.</p>
+   <button style="width:100%;margin-top:12px" id="printBtn2">Gerar proposta em PDF</button>
+  </section>
+  <section class="card no-print">
+   <div class="eyebrow">Acompanhamento</div><h2>Propostas salvas</h2>
+   <div id="history" class="history"><div class="empty">Nenhuma proposta salva ainda.</div></div>
+  </section>
+  <section class="card" id="printQuote">
+   <div class="print-brand hidden"><div class="eyebrow">Proposta comercial</div><h2>Orçamento de serviço</h2></div>
+   <div class="eyebrow">Prévia para o cliente</div><h2 id="previewService">Seu serviço aparecerá aqui</h2>
+   <p id="previewBusiness" class="muted" style="font-size:12px">Seu nome e contato</p>
+   <hr style="border:0;border-top:1px solid var(--line);margin:14px 0">
+   <p style="font-size:13px"><b>Cliente:</b> <span id="previewClient">—</span></p>
+   <p style="font-size:13px"><b>Data:</b> <span id="previewDate">—</span> · <b>Validade:</b> <span id="previewValidity">7 dias</span></p>
+   <div id="previewLines" style="margin:14px 0;font-size:13px">Itens do orçamento serão exibidos aqui.</div>
+   <div class="totalrow final"><strong>Total</strong><strong id="previewTotal">R$ 0,00</strong></div>
+   <p id="previewPayment" style="font-size:12px;margin-top:14px"></p><p id="previewSchedule" style="font-size:12px"></p><p id="previewNotes" style="font-size:12px;white-space:pre-wrap"></p>
+   <p class="muted" style="font-size:11px;margin-top:22px">Obrigado pela oportunidade. Esta proposta está sujeita à validade informada acima.</p>
+  </section>
+ </aside>
+</div>
+<div class="foot">OrçaFluxo · MVP gratuito · Não substitui orientação contábil ou fiscal. Os dados ficam armazenados localmente neste navegador.</div>
+</div>
+<script>
+const $=id=>document.getElementById(id), money=n=>(Number(n)||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'}), today=new Date().toISOString().slice(0,10);
+let lines=[{id:1,desc:'Mão de obra',qty:1,price:0}], history=JSON.parse(localStorage.getItem('orcafluxo-history')||'[]');
+$('date').value=today;
+function num(id){return Math.max(0,Number($(id).value)||0)}
+function renderLines(){ $('items').innerHTML=lines.map(x=>'<tr><td><input class="desc" data-id="'+x.id+'" data-key="desc" value="'+esc(x.desc)+'" aria-label="Descrição"></td><td><input class="qty" type="number" min=".01" step=".01" data-id="'+x.id+'" data-key="qty" value="'+x.qty+'"></td><td><input class="price" type="number" min="0" step=".01" data-id="'+x.id+'" data-key="price" value="'+x.price+'"></td><td class="total">'+money(x.qty*x.price)+'</td><td><button class="remove" data-remove="'+x.id+'" aria-label="Remover item">×</button></td></tr>').join('');calc()}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function calc(){
+ const subtotal=lines.reduce((s,x)=>s+(Math.max(0,x.qty)*Math.max(0,x.price)),0),travel=num('travel'),other=num('other'),cost=subtotal+travel+other,tax=Math.min(99,num('tax'))/100,fee=Math.min(99,num('fee'))/100,margin=Math.min(90,num('margin'))/100,discount=num('discount');
+ // Price is solved so costs + percentage fees/taxes + target profit margin fit within the selling price.
+ const divisor=1-tax-fee-margin, suggested=divisor>0?cost/divisor:0, final=Math.max(0,suggested-discount), fees=final*(tax+fee), profit=final-cost-fees, actual=final>0?profit/final*100:0;
+ $('costValue').textContent=money(cost);$('priceValue').textContent=money(suggested);$('profitValue').textContent=money(profit);$('marginValue').textContent=actual.toFixed(1).replace('.',',')+'%';$('subtotal').textContent=money(subtotal);$('extras').textContent=money(travel+other);$('discountValue').textContent=money(discount);$('finalValue').textContent=money(final);
+ $('calculationHint').textContent=divisor<=0?'A soma de taxas e margem precisa ser menor que 100%.':discount>suggested?'O desconto é maior que o preço sugerido. Revise os valores.':'Preço sugerido considera os custos informados, taxas e margem desejada.';
+ $('previewService').textContent=$('service').value||'Seu serviço';$('previewBusiness').textContent=[$('business').value,$('phone').value].filter(Boolean).join(' · ')||'Seu nome e contato';$('previewClient').textContent=$('client').value||'—';$('previewDate').textContent=$('date').value?new Date($('date').value+'T12:00:00').toLocaleDateString('pt-BR'):'—';$('previewValidity').textContent=$('validity').value;$('previewLines').innerHTML='<table style="width:100%;border-collapse:collapse"><tbody>'+lines.map(x=>'<tr><td style="padding:5px 0;border-bottom:1px solid #eee">'+esc(x.desc||'Item')+' × '+x.qty+'</td><td style="text-align:right;padding:5px 0;border-bottom:1px solid #eee">'+money(x.qty*x.price)+'</td></tr>').join('')+'</tbody></table>'+(travel||other?'<p>Deslocamento e outros custos incluídos.</p>':'');$('previewTotal').textContent=money(final);$('previewPayment').textContent=$('payment').value?'Pagamento: '+$('payment').value:'';$('previewSchedule').textContent=$('schedule').value?'Prazo: '+$('schedule').value:'';$('previewNotes').textContent=$('notes').value;
+ return {subtotal,travel,other,cost,tax,fee,margin,discount,suggested,final,profit,actual};
+}
+$('items').addEventListener('input',e=>{const id=Number(e.target.dataset.id),key=e.target.dataset.key,x=lines.find(x=>x.id===id);if(x&&key){x[key]=key==='desc'?e.target.value:Math.max(0,Number(e.target.value)||0);calc()}});
+$('items').addEventListener('click',e=>{const id=Number(e.target.dataset.remove);if(id){lines=lines.filter(x=>x.id!==id);renderLines()}});
+$('addItem').onclick=()=>{lines.push({id:Date.now(),desc:'Novo item',qty:1,price:0});renderLines()};
+document.querySelectorAll('input,textarea,select').forEach(el=>{if(el.id!=='date')el.addEventListener('input',calc);else el.addEventListener('change',calc)});
+function snapshot(){return {id:Date.now(),business:$('business').value,client:$('client').value,service:$('service').value,date:$('date').value,total:calc().final,profit:calc().profit,lines:JSON.parse(JSON.stringify(lines)),status:'Rascunho',created:new Date().toISOString()}}
+function save(){const s=snapshot();if(!s.client.trim()||!s.service.trim()){$('saveMsg').textContent='Informe o cliente e a descrição do serviço antes de salvar.';return}history.unshift(s);localStorage.setItem('orcafluxo-history',JSON.stringify(history));$('saveMsg').textContent='Proposta salva neste dispositivo.';renderHistory()}
+$('saveQuote').onclick=save;
+function renderHistory(){$('history').innerHTML=history.length?history.map(x=>'<div class="history-item"><div class="row"><b>'+esc(x.client)+'</b><span class="status '+statusClass(x.status)+'">'+esc(x.status)+'</span></div><p>'+esc(x.service)+' · '+new Date(x.created).toLocaleDateString('pt-BR')+'</p><div class="row"><b>'+money(x.total)+'</b><select data-status="'+x.id+'" aria-label="Status"><option '+(x.status==='Rascunho'?'selected':'')+'>Rascunho</option><option '+(x.status==='Enviada'?'selected':'')+'>Enviada</option><option '+(x.status==='Aprovada'?'selected':'')+'>Aprovada</option><option '+(x.status==='Perdida'?'selected':'')+'>Perdida</option></select></div></div>').join(''):'<div class="empty">Nenhuma proposta salva ainda.</div>'}
+function statusClass(s){return {'Enviada':'enviada','Aprovada':'aprovada','Perdida':'perdida'}[s]||''}
+$('history').addEventListener('change',e=>{const id=Number(e.target.dataset.status),x=history.find(x=>x.id===id);if(x){x.status=e.target.value;localStorage.setItem('orcafluxo-history',JSON.stringify(history));renderHistory()}});
+$('printBtn').onclick=$('printBtn2').onclick=()=>{calc();window.print()};
+$('newQuote').onclick=()=>{if(!confirm('Começar uma nova proposta? Salve a atual antes, se necessário.'))return;document.querySelectorAll('input').forEach(el=>{if(el.type==='number')el.value=el.id==='margin'?30:0;else if(el.id!=='date')el.value=''});$('date').value=today;$('validity').value='7 dias';$('notes').value='';$('payment').value='';$('schedule').value='';lines=[{id:Date.now(),desc:'Mão de obra',qty:1,price:0}];renderLines();$('saveMsg').textContent=''};
+$('exportData').onclick=()=>{const rows=[['cliente','servico','data','total','lucro_estimado','status'],...history.map(x=>[x.client,x.service,x.date,x.total,x.profit,x.status])];const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.download='orcafluxo-propostas.csv';a.click();URL.revokeObjectURL(a.href)};
+renderLines();renderHistory();calc();
+</script>
+</body></html>
