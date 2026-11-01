@@ -43,7 +43,7 @@
 </section>
 <div class="grid">
  <main class="stack">
-  <section class="card no-print"><div class="eyebrow">01 · Sua compra</div><h2>Identifique a cotação</h2><div class="formgrid"><div class="field"><label for="title">Nome da cotação</label><input id="title" maxlength="80" placeholder="Ex.: Compra semanal"></div><div class="field"><label for="date">Data</label><input id="date" type="date"></div></div></section>
+  <section class="card no-print" id="cotacao"><div class="eyebrow">01 · Sua compra</div><h2>Identifique a cotação</h2><div class="formgrid"><div class="field"><label for="title">Nome da cotação</label><input id="title" maxlength="80" placeholder="Ex.: Compra semanal"></div><div class="field"><label for="date">Data</label><input id="date" type="date"></div></div></section>
   <section class="card">
    <div class="sectionhead"><div><div class="eyebrow">02 · Preços recebidos</div><h2>Adicione os fornecedores</h2></div><span class="pill">Custo por unidade</span></div>
    <div class="tablewrap"><table class="table"><thead><tr><th>Produto</th><th>Fornecedor</th><th>Qtd.</th><th>Unidade</th><th>Preço (R$)</th><th>Frete (R$)</th><th>Desc. %</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
@@ -71,7 +71,7 @@
   <li>Compare o custo por kg, litro ou unidade e confirme prazo, qualidade e disponibilidade diretamente com o fornecedor.</li>
  </ul>
  <h3>Como calcular o custo por kg com frete e desconto?</h3>
- <p>O cálculo utilizado é: <strong>(preço dos produtos − desconto + frete) ÷ quantidade</strong>. No caso de desconto percentual, o desconto é aplicado ao preço dos produtos antes de somar o frete. Assim, duas embalagens com preços totais diferentes podem ser comparadas pelo custo equivalente na unidade informada.</p>
+ <p>O cálculo utilizado é: <strong>((preço dos produtos × (1 − desconto percentual)) + frete) ÷ quantidade</strong>. No caso de desconto percentual, o desconto é aplicado ao preço dos produtos antes de somar o frete. Assim, duas embalagens com preços totais diferentes podem ser comparadas pelo custo equivalente na unidade informada.</p>
  <h3>Para quem serve o comparador de cotações?</h3>
  <p>É útil para restaurantes, lanchonetes, padarias, mercados, pequenos comércios e profissionais de compras que recebem propostas de vários fornecedores e querem organizar a comparação sem contratar um sistema de compras completo.</p>
  <div class="eyebrow" style="margin-top:24px">Perguntas frequentes</div>
