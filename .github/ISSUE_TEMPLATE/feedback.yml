@@ -1,0 +1,78 @@
+name: Feedback sobre o InsumoCheck
+description: Conte como você compara cotações e se esta ferramenta ajudou.
+title: "[Feedback] "
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Não inclua preços confidenciais, dados pessoais, nomes de clientes ou informações privadas. Esta resposta ficará pública no GitHub.
+  - type: dropdown
+    id: business
+    attributes:
+      label: Qual é o seu tipo de negócio?
+      options:
+        - Restaurante ou lanchonete
+        - Padaria ou confeitaria
+        - Mercado ou mercearia
+        - Distribuidor ou fornecedor
+        - Outro
+    validations:
+      required: true
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: Com que frequência você compara fornecedores?
+      options:
+        - Todos os dias
+        - Toda semana
+        - Algumas vezes por mês
+        - Raramente
+        - Nunca
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: Como recebe as cotações?
+      multiple: true
+      options:
+        - WhatsApp
+        - E-mail
+        - Telefone
+        - Representante comercial
+        - Portal ou sistema de compras
+        - Outro
+    validations:
+      required: true
+  - type: dropdown
+    id: tried
+    attributes:
+      label: Você conseguiu comparar duas cotações com o InsumoCheck?
+      options:
+        - Sim, sem dificuldade
+        - Sim, mas tive dificuldade
+        - Não consegui
+        - Ainda não testei
+    validations:
+      required: true
+  - type: dropdown
+    id: value
+    attributes:
+      label: Se a ferramenta economizasse tempo toda semana, você pagaria por ela?
+      options:
+        - Não pagaria
+        - Talvez, se fosse muito barata
+        - Sim, até R$ 10 por mês
+        - Sim, de R$ 11 a R$ 20 por mês
+        - Sim, acima de R$ 20 por mês
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: O que mais atrapalha sua comparação de preços hoje?
+      description: Conte o problema principal e o que faltou na ferramenta.
+      placeholder: "Ex.: recebo preços em caixas com pesos diferentes e perco tempo fazendo contas..."
+    validations:
+      required: true
