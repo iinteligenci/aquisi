@@ -1,4 +1,4 @@
-# CotaCerta
+# InsumoCheck
 
 Ferramenta web gratuita para comparar cotações de fornecedores pelo custo unitário, considerando quantidade, frete e desconto.
 
