@@ -13,6 +13,12 @@ try {
   assert.match(await page.locator("h1").innerText(), /cotações de fornecedores/i);
   assert.equal(await page.locator("#rows tr").count(), 1, "deve abrir com uma linha pronta para preencher");
   assert.equal(await page.locator("#print").count(), 1, "botão de impressão deve existir");
+  const columns = await page.evaluate(() => {
+    const main = document.querySelector(".grid > main").getBoundingClientRect();
+    const aside = document.querySelector(".grid > aside").getBoundingClientRect();
+    return { mainRight: main.right, asideLeft: aside.left };
+  });
+  assert.ok(columns.mainRight <= columns.asideLeft + 1, "as colunas desktop não podem se sobrepor: " + JSON.stringify(columns));
 
   const fillQuote = async (n, supplier, price) => {
     await page.locator('[data-key="product"]').nth(n).fill("Arroz");
