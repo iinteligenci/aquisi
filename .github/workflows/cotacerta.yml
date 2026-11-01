@@ -63,6 +63,22 @@ jobs:
           assert 'Sitemap: https://iinteligenci.github.io/aquisi/sitemap.xml' in Path('robots.txt').read_text()
           print('SEO assets OK')
           PY
+      - name: Install Chromium for visual tests
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Run desktop and mobile browser tests
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/insumocheck-http.log 2>&1 &
+          for i in {1..20}; do curl -fsS http://127.0.0.1:4173/ >/dev/null && break || sleep 1; done
+          node tests/browser-smoke.mjs
+      - name: Upload visual review screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: insumocheck-visual-review
+          path: artifacts/*.png
+          if-no-files-found: warn
   deploy:
     needs: test
     environment:
