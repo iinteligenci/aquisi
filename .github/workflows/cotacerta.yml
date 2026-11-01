@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: 20
       - name: Test calculation engine
-        run: node --test tests/core.test.js
+        run: node --test tests/*.test.js
       - name: Check JavaScript syntax
         run: node --check core.js && node --check app.js
       - name: Check required page elements
@@ -42,7 +42,7 @@ jobs:
                   if tag == 'script' and d.get('src'): self.scripts.append(d['src'])
           p=Check(); p.feed(Path('index.html').read_text())
           assert len(p.ids)==len(set(p.ids)), 'IDs duplicados no HTML'
-          assert {'rows','add','save','csv','history','winner','breakdown'}.issubset(set(p.ids)), 'Elemento essencial ausente'
+          assert {'rows','add','save','csv','history','winner','breakdown','print','reset','sample','date','title','msg','clearHistory'}.issubset(set(p.ids)), 'Elemento essencial ausente'
           assert {'./core.js','./app.js'}.issubset(set(p.scripts)), 'Script do produto ausente'
           print('HTML smoke test OK')
           PY
