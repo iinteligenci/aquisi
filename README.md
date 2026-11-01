@@ -4,6 +4,7 @@
 
 - **Aplicativo:** https://iinteligenci.github.io/aquisi/
 - **Guia prático:** https://iinteligenci.github.io/aquisi/guia-comparar-cotacoes.html
+- **Painel local de validação:** https://iinteligenci.github.io/aquisi/controle.html
 - **Sitemap:** https://iinteligenci.github.io/aquisi/sitemap.xml
 
 ## Problema que resolve
@@ -41,6 +42,7 @@ O MVP está publicado gratuitamente como experimento. Ainda não há comprovaç�
 - Testes: `tests/core.test.js`
 - Guia de busca: `guia-comparar-cotacoes.html`
 - SEO técnico: `robots.txt`, `sitemap.xml`, canonical, Open Graph e dados estruturados.
+- Painel de controle local: registra semanalmente tráfego, ativação, comparações, retenção, feedback, intenção de pagamento, pagamentos e métricas do Google. Dados ficam no navegador; ainda não há analytics agregado automático.
 - Publicação: GitHub Pages via GitHub Actions.
 
 Execute os testes com `node --test tests/*.test.js` e verifique a sintaxe com `node --check core.js && node --check app.js`.
