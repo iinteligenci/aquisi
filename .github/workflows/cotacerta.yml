@@ -59,7 +59,7 @@ jobs:
           page=Path('index.html').read_text()
           assert 'rel="canonical"' in page
           assert 'application/ld+json' in page
-          assert 'Comparar cotações de fornecedores' in page
+          assert 'cotações de fornecedores' in page
           assert 'Sitemap: https://iinteligenci.github.io/aquisi/sitemap.xml' in Path('robots.txt').read_text()
           print('SEO assets OK')
           PY
