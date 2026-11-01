@@ -19,6 +19,8 @@ try {
     return { mainRight: main.right, asideLeft: aside.left };
   });
   assert.ok(columns.mainRight <= columns.asideLeft + 1, "as colunas desktop não podem se sobrepor: " + JSON.stringify(columns));
+  const tableBounds = await page.locator(".tablewrap").evaluate(el => ({ left: el.getBoundingClientRect().left, right: el.getBoundingClientRect().right, parentRight: el.closest("main").getBoundingClientRect().right, clientWidth: el.clientWidth, scrollWidth: el.scrollWidth }));
+  assert.ok(tableBounds.right <= tableBounds.parentRight + 1, "a tabela deve permanecer dentro da coluna principal: " + JSON.stringify(tableBounds));
 
   const fillQuote = async (n, supplier, price) => {
     await page.locator('[data-key="product"]').nth(n).fill("Arroz");
