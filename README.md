@@ -1,39 +1,49 @@
 # InsumoCheck
 
-**Compare o custo real dos seus insumos antes de comprar.**
+**Comparador gratuito de cotações de fornecedores.** Descubra o custo real por kg, litro ou unidade considerando quantidade, frete e desconto.
 
-Acesse a versão pública: **https://iinteligenci.github.io/aquisi/**
+- **Aplicativo:** https://iinteligenci.github.io/aquisi/
+- **Guia prático:** https://iinteligenci.github.io/aquisi/guia-comparar-cotacoes.html
+- **Sitemap:** https://iinteligenci.github.io/aquisi/sitemap.xml
 
-Ferramenta web gratuita para pequenos negócios que recebem preços de diferentes fornecedores e precisam comparar o custo por kg, litro ou unidade, incluindo frete e desconto.
+## Problema que resolve
+Pequenos negócios recebem propostas por WhatsApp, e-mail e telefone em embalagens e condições diferentes. O InsumoCheck permite inserir as propostas manualmente e compará-las pelo custo unitário equivalente, sem precisar cadastrar fornecedores ou instalar um ERP.
 
-## O que faz
-- Compara preços de diferentes fornecedores para o mesmo produto.
-- Calcula custo unitário a partir da quantidade, preço, frete e desconto.
-- Não compara unidades incompatíveis.
-- Só apresenta uma comparação quando existem pelo menos duas cotações válidas.
-- Estima a diferença entre a maior e a menor cotação usando a menor quantidade comum.
-- Permite salvar o histórico no navegador, exportar CSV e imprimir o resumo.
-- Não exige cadastro e não envia os dados a um servidor.
+## Funcionalidades
+- Comparação de preços por produto e fornecedor.
+- Cálculo de custo unitário com frete e desconto.
+- Bloqueio de comparações entre unidades incompatíveis.
+- Exige ao menos duas propostas válidas antes de apresentar uma comparação.
+- Histórico local, exportação CSV e impressão.
+- Layout responsivo para celular e desktop.
+- Compartilhamento do aplicativo pelo WhatsApp.
+- Sem cadastro, backend, APIs pagas ou coleta remota de cotações.
 
-## Como testar
-1. Abra o link público.
-2. Clique em **Ver exemplo preenchido** para conhecer o funcionamento.
-3. Substitua os dados fictícios pelos valores reais de duas ou mais cotações.
-4. Confira a comparação e exporte o CSV se desejar.
+## Como usar
+1. Abra o aplicativo e preencha produto, fornecedor, quantidade, unidade e preço.
+2. Adicione uma linha por proposta.
+3. Inclua frete e desconto, quando existirem.
+4. Compare apenas propostas da mesma unidade.
+5. Salve a comparação ou exporte CSV.
 
-## Privacidade e limites
-O histórico fica somente no armazenamento local do navegador. Não há conta, sincronização, integração automática com WhatsApp, importação de notas fiscais, conversão automática entre unidades ou análise de prazo e qualidade do fornecedor. A economia mostrada é potencial, não realizada.
+O exemplo de demonstração usa dados fictícios. Substitua-os por valores reais antes de tomar decisões de compra.
 
-## Estado do projeto
-- MVP publicado no GitHub Pages.
-- Testes automatizados e verificações de sintaxe/estrutura aprovados no GitHub Actions.
-- Produto experimental e gratuito.
-- **Validação comercial ainda pendente:** não há clientes pagantes nem evidência de retenção ou disposição a pagar. A hipótese precisa ser testada com compradores independentes antes de qualquer cobrança.
+## Privacidade e limitações
+As cotações ficam no armazenamento local do navegador. Não há sincronização entre dispositivos, integração automática com WhatsApp, importação de notas fiscais, conversão automática entre embalagens, avaliação de qualidade ou garantia de prazo e disponibilidade. A economia exibida é uma estimativa matemática, não uma economia realizada.
 
-## Desenvolvimento
+## Validação comercial
+O MVP está publicado gratuitamente como experimento. Ainda não há comprovação de clientes pagantes, retenção ou disposição a pagar. O feedback público é coletado por [este formulário de feedback no GitHub](https://github.com/iinteligenci/aquisi/issues/new?template=feedback.yml). Não envie informações comerciais confidenciais, dados pessoais ou preços privados.
+
+## Desenvolvimento e testes
+- Interface: `index.html`
 - Motor de cálculo: `core.js`
-- Interface: `index.html` e `app.js`
+- Lógica de interação: `app.js`
 - Testes: `tests/core.test.js`
-- Publicação: `.github/workflows/cotacerta.yml`
+- Guia de busca: `guia-comparar-cotacoes.html`
+- SEO técnico: `robots.txt`, `sitemap.xml`, canonical, Open Graph e dados estruturados.
+- Publicação: GitHub Pages via GitHub Actions.
 
-Para executar os testes localmente: `node --test tests/core.test.js`.
+Execute os testes com `node --test tests/core.test.js` e verifique a sintaxe com `node --check core.js && node --check app.js`.
+
+## Status
+O projeto é um MVP experimental. Testes técnicos aprovados não significam validação de mercado. A próxima decisão depende do uso real, frequência de retorno e feedback dos compradores.
