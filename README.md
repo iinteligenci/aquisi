@@ -43,7 +43,7 @@ O MVP está publicado gratuitamente como experimento. Ainda não há comprovaç�
 - SEO técnico: `robots.txt`, `sitemap.xml`, canonical, Open Graph e dados estruturados.
 - Publicação: GitHub Pages via GitHub Actions.
 
-Execute os testes com `node --test tests/core.test.js` e verifique a sintaxe com `node --check core.js && node --check app.js`.
+Execute os testes com `node --test tests/*.test.js` e verifique a sintaxe com `node --check core.js && node --check app.js`.
 
 ## Status
 O projeto é um MVP experimental. Testes técnicos aprovados não significam validação de mercado. A próxima decisão depende do uso real, frequência de retorno e feedback dos compradores.
