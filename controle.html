@@ -17,7 +17,7 @@
  <article class="card"><div class="metric" id="visitors">—</div><div class="metric-label">Visitantes únicos (soma semanal)</div></article>
  <article class="card"><div class="metric" id="completed">—</div><div class="metric-label">Comparações concluídas</div></article>
  <article class="card"><div class="metric" id="repeat">—</div><div class="metric-label">Usuários que voltaram</div></article>
- <article class="card"><div class="metric" id="paying">—</div><div class="metric-label">Pagamentos reais</div></article>
+ <article class="card"><div class="metric" id="paying">—</div><div class="metric-label">Pagamentos reais</div></article><article class="card"><div class="metric" id="searchClicks">—</div><div class="metric-label">Cliques orgânicos do Google</div></article><article class="card"><div class="metric" id="searchImpressions">—</div><div class="metric-label">Impressões no Google</div></article>
 </section>
 <div class="layout">
 <section class="card">
@@ -91,7 +91,7 @@ function render(){
 by("visitors").textContent=sum("visitorsInput").toLocaleString("pt-BR");
 by("completed").textContent=sum("completedInput").toLocaleString("pt-BR");
 by("repeat").textContent=sum("returned").toLocaleString("pt-BR");
-by("paying").textContent=sum("paid").toLocaleString("pt-BR");
+by("paying").textContent=sum("paid").toLocaleString("pt-BR");\nby("searchClicks").textContent=sum("googleClicks").toLocaleString("pt-BR");\nby("searchImpressions").textContent=sum("googleImpressions").toLocaleString("pt-BR");
 by("activation").textContent=pct(sum("started"),sum("visitorsInput"));
 by("completionRate").textContent=pct(sum("completedInput"),sum("started"));
 by("retention").textContent=pct(sum("returned"),sum("completedInput"));
