@@ -3,11 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "index.html"
-      - "core.js"
-      - "app.js"
-      - "tests/**"
-      - ".github/workflows/cotacerta.yml"
+      - "**"
   workflow_dispatch:
 permissions:
   contents: read
