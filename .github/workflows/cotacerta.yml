@@ -1,0 +1,62 @@
+name: Test and publish CotaCerta
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "core.js"
+      - "app.js"
+      - "tests/**"
+      - ".github/workflows/cotacerta.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Test calculation engine
+        run: node --test tests/core.test.js
+      - name: Check JavaScript syntax
+        run: node --check core.js && node --check app.js
+      - name: Check required page elements
+        run: |
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          class Check(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.ids=[]; self.scripts=[]
+              def handle_starttag(self, tag, attrs):
+                  d=dict(attrs)
+                  if 'id' in d: self.ids.append(d['id'])
+                  if tag == 'script' and d.get('src'): self.scripts.append(d['src'])
+          p=Check(); p.feed(Path('index.html').read_text())
+          assert len(p.ids)==len(set(p.ids)), 'IDs duplicados no HTML'
+          assert {'rows','add','save','csv','history','winner','breakdown'}.issubset(set(p.ids)), 'Elemento essencial ausente'
+          assert {'./core.js','./app.js'}.issubset(set(p.scripts)), 'Script do produto ausente'
+          print('HTML smoke test OK')
+          PY
+  deploy:
+    needs: test
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."
+      - id: deployment
+        uses: actions/deploy-pages@v4
