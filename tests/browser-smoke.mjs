@@ -43,6 +43,27 @@ try {
   assert.ok(widths.page <= widths.viewport + 1, "a página não deve criar rolagem horizontal no celular: " + JSON.stringify(widths));
   await page.screenshot({ path: "artifacts/insumocheck-mobile.png", fullPage: true });
   assert.equal(errors.length, 0, errors.join("\n"));
+  const control = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  await control.goto("http://127.0.0.1:4173/controle.html", { waitUntil: "networkidle" });
+  assert.match(await control.title(), /Painel de validação/);
+  assert.equal(await control.locator('meta[name="robots"]').getAttribute("content"), "noindex,nofollow");
+  await control.locator("#week").fill("2026-11-01");
+  await control.locator("#visitorsInput").fill("10");
+  await control.locator("#started").fill("5");
+  await control.locator("#completedInput").fill("4");
+  await control.locator("#returned").fill("1");
+  await control.locator("#feedback").fill("2");
+  await control.locator("#willing").fill("1");
+  await control.locator("#paid").fill("0");
+  await control.locator("#googleClicks").fill("3");
+  await control.locator("#googleImpressions").fill("20");
+  await control.locator("#weekForm button[type=submit]").click();
+  assert.equal(await control.locator("#visitors").innerText(), "10");
+  assert.equal(await control.locator("#activation").innerText(), "50.0%");
+  await control.reload({ waitUntil: "networkidle" });
+  assert.equal(await control.locator("#completed").innerText(), "4", "dashboard data persists locally");
+  assert.equal(await control.locator("#searchClicks").innerText(), "3");
+  await control.close();
   console.log("Browser smoke tests OK; screenshots saved.");
 } finally {
   await browser.close();
