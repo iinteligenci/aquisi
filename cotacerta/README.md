@@ -1,35 +1,38 @@
 # CotaCerta
 
-MVP experimental para comparar cotações de fornecedores em pequenos negócios de alimentação.
+Ferramenta web gratuita para comparar cotações de fornecedores pelo custo unitário, considerando quantidade, frete e desconto.
 
-## Problema e hipótese
-Pequenos compradores recebem preços em formatos diferentes e podem comparar preço de embalagem sem normalizar custo por kg, litro ou unidade. A hipótese é que uma ferramenta simples, sem ERP e sem exigir cadastro do fornecedor, ajude a decidir a compra.
-
-## Evidência pública inicial
-- VMarket declara mais de 2.000 operações e 20.000 fornecedores cadastrados.
-- Foozi declara mais de 900 estabelecimentos atendidos.
-- Estoqui vende controle de estoque para restaurantes a partir de R$149/mês.
-Esses sinais mostram atividade comercial no segmento, mas não provam demanda específica por este produto nem disposição a pagar.
-
-## MVP
-- Comparação de preços por produto e fornecedor.
-- Cálculo de custo por unidade informada, com frete e desconto.
+## O que está publicado neste MVP
+- Cadastro manual de múltiplos preços por produto e fornecedor.
+- Cálculo de custo por kg, g, litro, ml, unidade, metro, m² ou caixa.
+- Comparação somente quando as unidades informadas são iguais.
 - Identificação da menor cotação por produto.
-- Histórico local e exportação CSV.
-- Sem API paga, backend, conta ou envio de mensagens.
+- Estimativa transparente de economia potencial para a menor quantidade comum entre as cotações.
+- Histórico local, exportação CSV e impressão.
+- Sem cadastro, integração bancária, API paga ou backend.
 
-## Limitações
-- O usuário precisa inserir as cotações manualmente.
-- Não converte automaticamente unidades incompatíveis (ex.: caixa de 12 x kg); os dados precisam ser comparáveis na mesma unidade.
-- A "economia potencial" compara a opção mais barata com a mais cara disponível por produto, não uma economia realizada.
-- Os dados ficam apenas no navegador.
+## Como usar
+1. Adicione uma linha para cada preço recebido.
+2. Informe a quantidade total e a unidade correspondente à embalagem.
+3. Preencha preço, frete e desconto.
+4. Compare o custo unitário e confira as condições comerciais com o fornecedor.
+5. Salve a comparação ou exporte os dados em CSV.
 
-## Validação necessária antes de monetizar
-1. Testar o fluxo com compradores independentes, não apenas com grandes redes.
-2. Medir se a comparação economiza tempo ou dinheiro de forma recorrente.
-3. Descobrir frequência de uso e número de cotações por semana.
-4. Testar intenção de pagar por histórico de preços, listas recorrentes e importação de planilhas.
-5. Não adicionar cobrança, APIs ou infraestrutura paga antes de evidência de retenção e disposição a pagar.
+O botão **Ver exemplo preenchido** carrega dados fictícios de demonstração. Substitua-os antes de tomar decisões reais.
 
-## Rodar
-Abra `index.html` em qualquer navegador moderno.
+## Privacidade e limitações
+- As cotações ficam no armazenamento local do navegador deste dispositivo.
+- Não existe conta sincronizada entre dispositivos, integração automática com WhatsApp ou importação de notas.
+- A ferramenta não verifica qualidade, prazo, disponibilidade, tributação ou confiabilidade do fornecedor.
+- A economia potencial é uma comparação matemática entre cotações, não uma economia realizada.
+- Unidades incompatíveis não são convertidas automaticamente; padronize-as antes de comparar.
+- Limpar os dados do navegador pode apagar o histórico. Exporte CSV para manter uma cópia.
+
+## Testes
+Execute `node --test tests/core.test.js` e `node --check core.js && node --check app.js`.
+
+## Modelo de negócio e validação
+O produto está sendo lançado gratuitamente como experimento. Ainda não há comprovação de clientes pagantes, retenção ou disposição a pagar. Não há cobrança ativa. A próxima etapa comercial é obter uso recorrente de compradores independentes e medir se a ferramenta resolve um problema frequente antes de criar planos pagos.
+
+## Publicação
+O workflow em `.github/workflows/cotacerta.yml` executa os testes e publica o conteúdo estático no GitHub Pages após aprovação. A URL final depende da configuração do GitHub Pages no repositório.
