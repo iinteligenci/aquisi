@@ -46,6 +46,23 @@ jobs:
           assert {'./core.js','./app.js'}.issubset(set(p.scripts)), 'Script do produto ausente'
           print('HTML smoke test OK')
           PY
+      - name: Validate SEO assets
+        run: |
+          test -s robots.txt
+          test -s sitemap.xml
+          test -s favicon.svg
+          test -s guia-comparar-cotacoes.html
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          ET.parse('sitemap.xml')
+          page=Path('index.html').read_text()
+          assert 'rel="canonical"' in page
+          assert 'application/ld+json' in page
+          assert 'Comparar cotações de fornecedores' in page
+          assert 'Sitemap: https://iinteligenci.github.io/aquisi/sitemap.xml' in Path('robots.txt').read_text()
+          print('SEO assets OK')
+          PY
   deploy:
     needs: test
     environment:
