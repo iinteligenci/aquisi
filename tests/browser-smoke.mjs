@@ -46,6 +46,7 @@ try {
   await page.screenshot({ path: "artifacts/insumocheck-mobile.png", fullPage: true });
   assert.equal(errors.length, 0, errors.join("\n"));
   const control = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  control.on("pageerror", error => errors.push("control: " + error.message));
   await control.goto("http://127.0.0.1:4173/controle.html", { waitUntil: "networkidle" });
   assert.match(await control.title(), /Painel de validação/);
   assert.equal(await control.locator('meta[name="robots"]').getAttribute("content"), "noindex,nofollow");
