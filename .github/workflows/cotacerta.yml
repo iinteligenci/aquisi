@@ -1,4 +1,4 @@
-name: Test and publish CotaCerta
+name: Test and publish InsumoCheck
 on:
   push:
     branches: [main]
